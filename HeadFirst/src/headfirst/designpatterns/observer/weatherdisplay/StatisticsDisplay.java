@@ -14,10 +14,31 @@ public class StatisticsDisplay implements Observer, DisplayElement{
         weatherData.registerObserver(this); // 해당 주제에 옵저버로 등록
     }
 
-
-    @Override
+    // Push 방식
+    /*@Override
     public void update(float temp, float humidity, float pressure) {
         // 온도 갱신
+        this.temperature = temp;
+        this.totTemp += temp;
+        numReadings++;
+
+        // 최대, 최소 갱신
+        if (temp > maxTemp) {
+            maxTemp = temp;
+        }
+        if (temp < minTemp) {
+            minTemp = temp;
+        }
+
+        // 화면 표시
+        display();
+    }*/
+
+    // Pull 방식
+    @Override
+    public void update() {
+        // 온도 갱신
+        float temp = weatherData.getTemperature();
         this.temperature = temp;
         this.totTemp += temp;
         numReadings++;

@@ -10,11 +10,19 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
         weatherData.registerObserver(this); // weatherData(Subject)에 Observer 등록
     }
 
-
-    @Override
+    // Push 방식
+    /*@Override
     public void update(float temp, float humidity, float pressure) {
         this.temperature = temp;
         this.humidity = humidity;
+        display(); // 최신 값으로 갱신 후 화면에 표출
+    }*/
+
+    // Pull 방식
+    @Override
+    public void update() {
+        this.temperature = weatherData.getTemperature();
+        this.humidity = weatherData.getHumidity();
         display(); // 최신 값으로 갱신 후 화면에 표출
     }
 
